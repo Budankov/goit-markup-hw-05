@@ -373,6 +373,7 @@ ol {
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
+  border-radius: 4px;
   background-color: var(--teams-section-bcg-color);
 }
 
