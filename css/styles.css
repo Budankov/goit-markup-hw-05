@@ -15,8 +15,10 @@
   --header-border-color: #ececec;
   --portfolio-border-color: #eeeeee;
   --btn-hover-accent: #188CE8;
+  --portfolio-bcg-accent-color: rgba(33, 150, 243, 0.9);
   --network-firm-color: rgba(255, 255, 255, 0.1);
   --service-subtitle-bcg: rgba(47, 48, 58, 0.8);
+  --backdrop-bcg-color: rgba(0, 0, 0, 0.2);
 
   /* ======================================== Fonts ======================================== */
   --primary-font: 'Roboto', sans-serif;
@@ -341,6 +343,12 @@ ol {
 .button:hover {
   background-color: var(--btn-hover-accent);
 }
+
+/* Чисто от себя декоративный эффект нажатия */
+.button:active {
+  opacity: 0.8;
+  transform: scale(.95);
+}
 /* ======================================== //Hero ======================================== */
 
 /* ======================================== Features ======================================== */
@@ -546,7 +554,7 @@ ol {
   margin-left: -30px;
 }
 
-.portfolio>.projects {
+.portfolio>.project {
   flex-basis: calc((100% - 30px * 3) / 3);
   margin-top: 30px;
   margin-left: 30px;
@@ -562,10 +570,36 @@ ol {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
+.project-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-overlay {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
+  background-color: var(--portfolio-bcg-accent-color);
+  overflow: auto;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform var(--transition-duration);
+}
+
 .project-description {
   font-size: 18px;
   line-height: 1.56;
   color: var(--primary-white-color);
+}
+
+.project-card:hover .project-overlay,
+.project-card:focus .project-overlay {
+  transform: translateY(0%);
+  opacity: 1;
 }
 
 .project-info {
@@ -591,3 +625,74 @@ ol {
 }
 /* ======================================== //Portfolio list ======================================== */
 /* ======================================== //Portfolio ======================================== */
+
+/* ======================================== Modal Windows ======================================== */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backdrop-bcg-color);
+  opacity: 1;
+  transition: opacity var(--transition-duration), visability var(--transition-duration);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform var(--transition-duration);
+
+  min-width: 528px;
+  min-height: 581px;
+  padding: 25px;
+
+  background: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #0000001a;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition-duration);
+}
+
+.btn-close-modal:active {
+  opacity: 0.8;
+  transform: scale(.95);
+}
+
+.btn-close-modal:focus,
+.btn-close-modal:hover {
+  border-color: var(--accent-color);
+}
+
+.btn-close-modal:focus .icon-close,
+.btn-close-modal:hover .icon-close {
+  fill: var(--accent-color);
+}
+/* ======================================== //Modal Windows ======================================== */
