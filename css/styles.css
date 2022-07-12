@@ -587,7 +587,7 @@ ol {
   overflow: auto;
   opacity: 0;
   transform: translateY(100%);
-  transition: transform var(--transition-duration);
+  transition: transform var(--transition-duration), opacity var(--transition-duration);
 }
 
 .project-description {
