@@ -646,6 +646,7 @@ ol {
 
 .backdrop.is-hidden .modal {
   transform: translate(-50%, -50%) scale(1.2);
+  transition: visibility var(--transition-duration), transform var(--transition-duration);
 }
 
 .modal {
